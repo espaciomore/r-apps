@@ -26,11 +26,14 @@ shinyServer(function(input, output){
 	# add the dependent variable Wind
 	points(x=fit.data$Day, y=fit.data$Temp, cex = (fit.data$Wind/max(fit.data$Wind, na.rm=T))*10, col = "light blue")
 	# add the regression line
-	abline(fit.lm, col="green", lty=2)
+	abline(lm(formula=Temp ~ Day, data=fit.data, na.action=na.exclude), col="green", lty=2)
+	abline(lm(formula=Temp ~ Ozone, data=fit.data, na.action=na.exclude), col="yellow", lty=2)
+	abline(lm(formula=Temp ~ Solar.R, data=fit.data, na.action=na.exclude), col="orange", lty=2)
+	abline(lm(formula=Temp ~ Wind, data=fit.data, na.action=na.exclude), col="light blue", lty=2)
 	# add legend for dependent variables
-	legend(-1, 115, legend=c("Ozone", "Solar.R", "Wind"), 
-		col = c("yellow", "orange", "light blue"),
-    	text.col = "gray", lty = c(1, 1, 1), box.lty=0,
+	legend(-1, 115, legend=c("Ozone", "Solar.R", "Wind", "Temp"), 
+		col = c("yellow", "orange", "light blue", "green"),
+    	text.col = "gray", lty = 2, box.lty=0,
     	bg="transparent"
  	)
 

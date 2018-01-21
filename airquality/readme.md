@@ -32,7 +32,7 @@ Sorrounding the temperature is the feature; Ozone, Solar R. and Wind.
 Visualization
 ========================================================
 
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://mcerda.shinyapps.io/nyc_airquality/"></iframe>
+<iframe width="90%" height="800" frameborder="0" scrolling="no" src="https://mcerda.shinyapps.io/nyc_airquality/"></iframe>
 
 
 Source
