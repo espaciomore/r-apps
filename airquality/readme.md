@@ -9,7 +9,7 @@ autosize: true
 Description
 ========================================================
 
-Daily air quality measurements in New York, May to September 1973.
+The purspose if to present the New York City's daily temperature during the summer time, May to September 1973.
 
 A data frame with 154 observations on 6 variables.
 
@@ -21,17 +21,22 @@ A data frame with 154 observations on 6 variables.
 6.	Day (1:31)
 
 
-Instructions
+Instruction
 ========================================================
-
-New York City's daily temperature during the summer time.
 
 Because the observations are available only from June to September, you will be able to select the temperature per month.
 
 Sorrounding the temperature is the feature; Ozone, Solar R. and Wind.
 
 
-
+Visualization
 ========================================================
 
 <iframe width="900" height="800" frameborder="0" scrolling="no" src="https://mcerda.shinyapps.io/nyc_airquality/"></iframe>
+
+
+Source
+========================================================
+
+Find the source code on:
+<a href="https://github.com/espaciomore/r-apps/tree/master/airquality">https://github.com/espaciomore/r-apps/tree/master/airquality</a>
