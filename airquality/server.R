@@ -17,7 +17,7 @@ shinyServer(function(input, output){
 	plot(x=fit.data$Day, y=fit.data$Temp, 
 		xlim=c(0,31), ylim=c(50,110), 
 		xlab="Day", ylab="Temperature (Farenheit)", 
-		col="white", pch='.', axes=T, bty="n")
+		col="green", pch='.', axes=T, bty="n")
 	title(main="New York City's Temperature by Day")
 	# add the dependent variable Ozone
 	points(x=fit.data$Day, y=fit.data$Temp, cex = (fit.data$Ozone/max(fit.data$Ozone, na.rm=T))*10, col = "yellow")
@@ -27,9 +27,9 @@ shinyServer(function(input, output){
 	points(x=fit.data$Day, y=fit.data$Temp, cex = (fit.data$Wind/max(fit.data$Wind, na.rm=T))*10, col = "light blue")
 	# add the regression line
 	abline(lm(formula=Temp ~ Day, data=fit.data, na.action=na.exclude), col="green", lty=2)
-	abline(lm(formula=Temp ~ Ozone, data=fit.data, na.action=na.exclude), col="yellow", lty=2)
-	abline(lm(formula=Temp ~ Solar.R, data=fit.data, na.action=na.exclude), col="orange", lty=2)
-	abline(lm(formula=Temp ~ Wind, data=fit.data, na.action=na.exclude), col="light blue", lty=2)
+	abline(lm(formula=Temp ~ Day+Ozone, data=fit.data, na.action=na.exclude), col="yellow", lty=2)
+	abline(lm(formula=Temp ~ Day+Solar.R, data=fit.data, na.action=na.exclude), col="orange", lty=2)
+	abline(lm(formula=Temp ~ Day+Wind, data=fit.data, na.action=na.exclude), col="light blue", lty=2)
 	# add legend for dependent variables
 	legend(-1, 115, legend=c("Ozone", "Solar.R", "Wind", "Temp"), 
 		col = c("yellow", "orange", "light blue", "green"),
