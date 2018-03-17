@@ -5,6 +5,6 @@ account: mcerda
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 258860
-bundleId: 1185197
+bundleId: 1185211
 url: https://mcerda.shinyapps.io/nyc_airquality/
-when: 1516519640.42871
+when: 1516520565.86829

@@ -1,0 +1,6 @@
+re.url <- "^(http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}(:[0-9]{1,5})?(\\/.*)?"
+re.hashtags <- "([a-zA-Z]*[#.0-9\\/][a-zA-Z]*)+"
+re.excesiveLetters <- "([a-zA-Z])(\\1{2,})"
+re.chars <- "[,.:;\"\\(\\)\\[\\]~\\!@#\\$%\\^&\\*_+-\\{\\}]+"
+re.fuckWords <- "fuck[a-z']+|damn[a-z']+|dick|pussy|whore"
+re.repeatedWords <- "(\\w{2,})((\\s|$)\\1)+"
