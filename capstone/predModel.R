@@ -12,23 +12,15 @@ buildNGrams <- function(size,corpus){
 	ngrams <- c()
 	corpus <- concatenate(corpus, collapse = "\n")
 	for(i in 1:size) {
-	  fl.name <- paste("ngrams_",i,".Rds", sep = "")
-	  ng <- #if(file.exists(fl.name)){
-	    #readRDS(file=fl.name)
-	  #} else {
-	    t.ngram <- ngram(corpus, n=i, sep=", \n")
-	    #saveRDS(t.ngram, file=fl.name)
-	    #t.ngram
-	  #}
+	  ng <- ngram(corpus, n=i, sep=", \n")
 		ngrams <- c(ngrams, ng)
 	}
-	saveRDS(ngrams, file="ngrams.Rds")
 	return(ngrams)
 }
 print("Loading n-grams")
 ngrams <- buildNGrams(10, data.corpus)
 # predict the next word
-predictNextWord <- function(text, ng=ngrams, nw=10){
+predictNextWord <- function(text, ng=ngrams, nw=20){
   # clean the text accordingly
   text <- preprocess(text, remove.punct = T, remove.numbers = T, fix.spacing = F)
   print("removeURL")
