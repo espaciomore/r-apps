@@ -1,3 +1,5 @@
+library(lineprof)
+
 library(tm)
 library(ngram)
 library(data.table)
@@ -5,9 +7,15 @@ library(data.table)
 source("regexps.R")
 
 # load the corpora
-data.corpus <- readRDS(file="corpus_object.316KB.Rds")
+read.rds <- function(filename){
+  pause(0.1)
+  readRDS(file=filename)
+}
+print("Loading corpus from Rds")
+data.corpus <- read.rds("corpus_object.316KB.Rds")
 # recreate the n-gram models
 buildNGrams <- function(size,corpus){
+  pause(0.1)
   set.seed(123)
 	ngrams <- c()
 	corpus <- concatenate(corpus, collapse = "\n")
@@ -21,21 +29,26 @@ print("Loading n-grams")
 ngrams <- buildNGrams(10, data.corpus)
 # predict the next word
 predictNextWord <- function(text, ng=ngrams, nw=20){
+  pause(0.1)
   # clean the text accordingly
-  text <- preprocess(text, remove.punct = T, remove.numbers = T, fix.spacing = F)
-  print("removeURL")
-  text <- gsub(re.url, "", text, ignore.case = T)
-  print("removeHashtags")
-  text <- gsub(re.hashtags, "", text, ignore.case = T)
-  print("removeExcesiveLetters")
-  text <- gsub(re.excesiveLetters, "\\1", text, ignore.case = T)
-  print("removeChars")
-  text <- gsub(re.chars, " ", text, ignore.case = T)
-  print("removeFuckWords")
-  text <- gsub(re.fuckWords, "", text, ignore.case = T)
-  print("removeRepeatedWords")
-  text <- gsub(re.repeatedWords, "\\1", text, ignore.case = T)
-  print(paste0("Search Text: ", text))
+  cleanText <- function(texto){
+    texto <- preprocess(texto, remove.punct = T, remove.numbers = T, fix.spacing = F)
+    print("removeURL")
+    texto <- gsub(re.url, "", texto, ignore.case = T)
+    print("removeHashtags")
+    texto <- gsub(re.hashtags, "", texto, ignore.case = T)
+    print("removeExcesiveLetters")
+    texto <- gsub(re.excesiveLetters, "\\1", texto, ignore.case = T)
+    print("removeChars")
+    texto <- gsub(re.chars, " ", texto, ignore.case = T)
+    print("removeFuckWords")
+    texto <- gsub(re.fuckWords, "", texto, ignore.case = T)
+    print("removeRepeatedWords")
+    texto <- gsub(re.repeatedWords, "\\1", texto, ignore.case = T)
+    print(paste0("Search Text: ", texto))
+    return(texto)
+  }
+  text <- cleanText(text)
   # count the number of words in input text
 	text.words <- unlist(strsplit(text,split=" "))
 	text.wc <- length(text.words)
@@ -62,6 +75,7 @@ predictNextWord <- function(text, ng=ngrams, nw=20){
 	}
 	
 	backoffMode <- function(text, ng2, n){
+	  pause(0.1)
     # get the phrase table from ngram
     pt <- get.phrasetable(ng=ng2[[n]])
     # create the data table for querying
